@@ -22,58 +22,6 @@ Apply and launch. :grin:
 
 Can move the shortcut anywhere now. :fireworks:
 
-# SolisXI Features and Commands
-
-* **Running latest LSB build       **
-* **All jobs available             **
-* **Level 99 cap                   **
-* **Multibox Allowed               **
-* **All expansions enabled         **
-* **3x EXP/Capacity/Sparks         **
-* **All maps and outposts available**
-* **70 movement speed              **
-* **500k gil start 80 inventory    **
-* **Level Sync enabled             **
-* **FoV/GoV enabled                **
-* **All Trusts available           **
-* **2.5x Monster respawn rate      **
-* **Lottery NMs always available   **
-* **AH bot/Stocked Auction House   **
-* **Trust Extravaganza/Expo active **
-* **Fishing enabled                **
-* **Synergy active(testing)        **
-
-Player commands: (more coming soon.)
-
-!signet   				`12h/toggle`
-
-!sanction      			`12h/toggle`
-
-!tp         	        `Regain buff toggle`
-
-!zone             		`Zone anywhere`
-
-!addalltrusts			`Unlock all trusts`
-
-!addallhp               `Unlock all Home Points`
-
-!addallsg               `Unlock all Survival Guides`
-
-!ah                     `Open Auction House`
-
-!capskills              `Cap all skills`
-
-
-*Trade your Adventurer Coupon to*
-
-_Ailevia_ **(Southern San d'Oria I-9)**
-
-_Reet_ **(Bastok Markets G-7)**
-
-_Jack of Spades_ **(Windurst Woods H-10)**
-
-*For EXP/Capacity boost items and more gil.*
-
 # System Requirements
 
 Ashita v4 is built to target modern operating systems. Because of the programming language feature sets we make use of, our system requirements have been bumped up since Ashita v3. (We no longer support Windows XP/Vista!)
