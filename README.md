@@ -1,39 +1,4 @@
-# Ashita v4 Beta Release
-
-<a href="https://github.com/AshitaXI/Ashita-v4beta">![GitHub last commit](https://img.shields.io/github/last-commit/AshitaXI/Ashita-v4beta?style=for-the-badge)</a>
-<a href="https://discord.gg/Ashita">![Discord](https://img.shields.io/discord/264673946257850368?style=for-the-badge)</a>
-<a href="https://github.com/AshitaXI/Ashita/issues">![GitHub issues](https://img.shields.io/github/issues/AshitaXI/Ashita?style=for-the-badge)</a>
-<a href="https://github.com/AshitaXI/Ashita/issues?q=is%3Aissue+is%3Aclosed">![GitHub closed issues](https://img.shields.io/github/issues-closed/AshitaXI/Ashita?style=for-the-badge)</a>
-
-This repository contains the current, most up to date and publicly released version of the Ashita v4 beta.
-
-# Lead Developers
-
-Ashita v4 is developed and maintained by:
-
-  * **[atom0s](https://github.com/atom0s)** ![GitHub followers](https://img.shields.io/github/followers/atom0s?style=flat) ![Twitter Follow](https://img.shields.io/twitter/follow/atom0s)
-  * **[ThornyFFXI](https://github.com/ThornyFFXI)** ![GitHub followers](https://img.shields.io/github/followers/ThornyFFXI?style=flat)
-
-_Special thanks to all our addon and plugin developers as well!_
-
-# Ashita v4 Open Beta
-
-Ashita v4's development started a few years ago but was never pushed as something serious until last year. v3 has been very stable and solid for the time being, and until we felt a need for a new version came, we didn't start pushing forward with v4. When we decided to revamp the event callbacks and restructure the Addon framework, we began more serious development on v4, which started late 2019 into 2020.
-
-On May 24th, 2020 we opened the beta testing of v4 to all who were interested in our first stage of open beta testing. Users can still join the open beta now and until we have fully released v4 officially. To join, you must be a member of our Discord and join the beta group.
-
-[![Support Server](https://img.shields.io/discord/264673946257850368.svg?label=Discord&logo=Discord&colorB=7289da&style=for-the-badge)](https://discord.gg/Ashita)
-
-Once on the Discord server, you can join the beta group by using the `.betatester` command in any channel. Simply type this as a normal message and our bot will get you added to the proper group. From there you will be able to see a set of new beta tester channels.
-
-# Bug Reports
-
-Our main repository should be used for reporting any bugs that you come across with Ashita v4.\
-You can find the issue tracker here:
-
-https://github.com/AshitaXI/Ashita/issues
-
-*Please be sure to use and follow the proper template when reporting a bug or submitting a feature request!*
+# Ashita v4 SolisXI Edit
 
 # System Requirements
 
@@ -53,3 +18,23 @@ Additional requirements may include the following depending on your system, the 
   * **VC++ Redist. 2010** - [Click Here To Download](https://download.microsoft.com/download/C/6/D/C6D0FD4E-9E53-4897-9B91-836EBA2AACD3/vcredist_x86.exe)
   * **VC++ Redist. 2012** - [Click Here To Download](https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe)
   * **VC++ Redist. 2013** - [Click Here To Download](https://aka.ms/highdpimfc2013x86enu)
+
+# Server Connection Setup
+
+1. Run a normal FFXI Install. Download files/installer:
+http://www.playonline.com/ff11us/download/media/install_win.html
+
+2. Download my Ashita v4 fork from here:
+https://github.com/jsxxi/Ashita-SolisXI/archive/refs/heads/main.zip
+
+3. Edit the USER and PASSWORD with your credentials in `Ashita-SolisXI\config\boot\profile.ini`
+
+--server sxi.ddns.net --user USERNAME --password "PASSWORD"
+
+6. From the main Ashita folder create a shortcut of Ashita-cli.exe and edit its properties.
+
+7. Add " profile.ini" without the quotes to the end of "Ashita-cli.exe" in the "Target:" field.
+
+Apply and launch. :grin: 
+
+Can move the shortcut anywhere now. :fireworks:
