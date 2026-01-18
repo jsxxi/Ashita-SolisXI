@@ -2,14 +2,13 @@
 
 [Register an Account](http://sxi.ddns.net/)
 
-[SolisXI Discord](https://discord.gg/aPXNvtXpnW)
-
+[Join our Discord](https://discord.gg/aPXNvtXpnW)
 
 # Ashita v4 and Server Connection Setup
 
 1. Run a normal FFXI Install. [Download files/installer](http://www.playonline.com/ff11us/download/media/install_win.html)
 
-2. Download Ashita-SolisXI from [here](https://github.com/jsxxi/Ashita-SolisXI/archive/refs/tags/Ashita-SolisXI.zip)
+2. Download my forked Ashita v4 from [here](https://github.com/jsxxi/Ashita-SolisXI/archive/refs/tags/Ashita-SolisXI.zip)
 
 3. Edit the USER and PASSWORD with your credentials in `Ashita-SolisXI\config\boot\profile.ini`
 
@@ -22,6 +21,44 @@
 Apply and launch. :grin: 
 
 Can move the shortcut anywhere now. :fireworks:
+
+# SolisXI Features and Commands
+
+* **Running latest LSB build       **
+* **All jobs available             **
+* **Level 99 cap                   **
+* **Multibox Allowed               **
+* **All expansions enabled         **
+* **3x EXP/Capacity/Sparks         **
+* **All maps and outposts available**
+* **70 movement speed              **
+* **500k gil start 80 inventory    **
+* **Level Sync enabled             **
+* **FoV/GoV enabled                **
+* **All Trusts available           **
+* **2.5x Monster respawn rate      **
+* **Lottery NMs always available   **
+* **AH bot/Stocked Auction House   **
+* **Trust Extravaganza/Expo active **
+* **Fishing enabled                **
+* **Synergy active(testing)        **
+
+Player commands: (more coming soon.)
+!signet   				`12h/toggle`
+!sanction      			`12h/toggle`
+!tp         	        `Regain buff toggle`
+!zone             		`Zone anywhere`
+!addalltrusts			`Unlock all trusts`
+!addallhp               `Unlock all Home Points`
+!addallsg               `Unlock all Survival Guides`
+!ah                     `Open Auction House`
+!capskills              `Cap all skills`
+
+*Trade your Adventurer Coupon to*
+_Ailevia_ **(Southern San d'Oria I-9)**
+_Reet_ **(Bastok Markets G-7)**
+_Jack of Spades_ **(Windurst Woods H-10)**
+*For EXP/Capacity boost items and more gil.*
 
 
 # System Requirements
