@@ -29,7 +29,7 @@ https://github.com/jsxxi/Ashita-SolisXI/archive/refs/heads/main.zip
 
 3. Edit the USER and PASSWORD with your credentials in `Ashita-SolisXI\config\boot\profile.ini`
 
-	--server sxi.ddns.net --user USERNAME --password "PASSWORD"
+		--server sxi.ddns.net --user USERNAME --password "PASSWORD"
 
 4. From the main Ashita folder create a shortcut of Ashita-cli.exe and edit its properties.
 
