@@ -31,9 +31,9 @@ https://github.com/jsxxi/Ashita-SolisXI/archive/refs/heads/main.zip
 
 --server sxi.ddns.net --user USERNAME --password "PASSWORD"
 
-6. From the main Ashita folder create a shortcut of Ashita-cli.exe and edit its properties.
+4. From the main Ashita folder create a shortcut of Ashita-cli.exe and edit its properties.
 
-7. Add " profile.ini" without the quotes to the end of "Ashita-cli.exe" in the "Target:" field.
+5. Add " profile.ini" without the quotes to the end of "Ashita-cli.exe" in the "Target:" field.
 
 Apply and launch. :grin: 
 
