@@ -44,22 +44,35 @@ Can move the shortcut anywhere now. :fireworks:
 * **Synergy active(testing)        **
 
 Player commands: (more coming soon.)
+
 !signet   				`12h/toggle`
+
 !sanction      			`12h/toggle`
+
 !tp         	        `Regain buff toggle`
+
 !zone             		`Zone anywhere`
+
 !addalltrusts			`Unlock all trusts`
+
 !addallhp               `Unlock all Home Points`
+
 !addallsg               `Unlock all Survival Guides`
+
 !ah                     `Open Auction House`
+
 !capskills              `Cap all skills`
 
-*Trade your Adventurer Coupon to*
-_Ailevia_ **(Southern San d'Oria I-9)**
-_Reet_ **(Bastok Markets G-7)**
-_Jack of Spades_ **(Windurst Woods H-10)**
-*For EXP/Capacity boost items and more gil.*
 
+*Trade your Adventurer Coupon to*
+
+_Ailevia_ **(Southern San d'Oria I-9)**
+
+_Reet_ **(Bastok Markets G-7)**
+
+_Jack of Spades_ **(Windurst Woods H-10)**
+
+*For EXP/Capacity boost items and more gil.*
 
 # System Requirements
 
