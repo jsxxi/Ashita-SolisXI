@@ -1,13 +1,12 @@
 # Ashita v4 SolisXI Edit
 
 
-# Server Connection Setup
 
-1. Run a normal FFXI Install. Download files/installer:
-http://www.playonline.com/ff11us/download/media/install_win.html
+# Ashita v4 and Server Connection Setup
 
-2. Download my Ashita v4 fork from here:
-https://github.com/jsxxi/Ashita-SolisXI/archive/refs/heads/main.zip
+1. Run a normal FFXI Install. [Download files/installer](http://www.playonline.com/ff11us/download/media/install_win.html)
+
+2. Download my forked Ashita v4 from [here](https://github.com/jsxxi/Ashita-SolisXI/archive/refs/tags/Ashita-SolisXI.zip)
 
 3. Edit the USER and PASSWORD with your credentials in `Ashita-SolisXI\config\boot\profile.ini`
 
