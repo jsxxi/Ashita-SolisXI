@@ -1,5 +1,8 @@
 # Ashita v4 SolisXI Edit
 
+[Register an Account](http://sxi.ddns.net/)
+
+[SolisXI Discord](https://discord.gg/aPXNvtXpnW)
 
 
 # Ashita v4 and Server Connection Setup
