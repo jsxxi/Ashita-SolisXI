@@ -66,15 +66,13 @@ Can move the shortcut anywhere now. :fireworks:
 **!trustengage**          `1 = Engage 0 = Default`
 
 
-*Trade your Adventurer Coupon to*
+### Trade your Adventurer Coupon to
 
 _Ailevia_ **(Southern San d'Oria I-9)**
-
 _Reet_ **(Bastok Markets G-7)**
-
 _Jack of Spades_ **(Windurst Woods H-10)**
 
-*For EXP/Capacity boost items and more gil.*
+### For EXP/Capacity boost items and more gil.
 
 # System Requirements
 
