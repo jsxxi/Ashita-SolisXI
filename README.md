@@ -24,24 +24,24 @@ Can move the shortcut anywhere now. :fireworks:
 
 # SolisXI Features and Commands
 
-* **Running latest LSB build      
-* **All jobs available            
-* **Level 99 cap                  
-* **Multibox Allowed              
-* **All expansions enabled        
-* **3x EXP/Capacity/Sparks        
-* **All maps and outposts available
-* **70 movement speed             
-* **500k gil start 80 inventory   
-* **Level Sync enabled            
-* **FoV/GoV enabled               
-* **All Trusts available          
-* **2.5x Monster respawn rate     
-* **Lottery NMs always available  
-* **AH bot/Stocked Auction House  
-* **Trust Extravaganza/Expo active
-* **Fishing enabled               
-* **Synergy active(testing)       
+* **Running latest LSB build**
+* **All jobs available**
+* **Level 99 cap**
+* **Multibox Allowed**
+* **All expansions enabled**
+* **3x EXP/Capacity/Sparks**
+* **All maps and outposts available**
+* **70 movement speed**
+* **500k gil start 80 inventory**
+* **Level Sync enabled**
+* **FoV/GoV enabled**
+* **All Trusts available**
+* **2.5x Monster respawn rate**
+* **Lottery NMs always available**
+* **AH bot/Stocked Auction House**
+* **Trust Extravaganza/Expo active**
+* **Fishing enabled**
+* **Synergy active(testing)**
 
 Player commands: (more coming soon.)
 !signet                   `12h/toggle`
