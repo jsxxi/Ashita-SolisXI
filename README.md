@@ -43,7 +43,7 @@ Can move the shortcut anywhere now. :fireworks:
 * **Fishing enabled**
 * **Synergy active(testing)**
 
-#Player commands: (more coming soon.)
+# Player Commands:
 
 **!signet**                   `12h/toggle`
 
@@ -67,9 +67,13 @@ Can move the shortcut anywhere now. :fireworks:
 
 
 *Trade your Adventurer Coupon to*
+
 _Ailevia_ **(Southern San d'Oria I-9)**
+
 _Reet_ **(Bastok Markets G-7)**
+
 _Jack of Spades_ **(Windurst Woods H-10)**
+
 *For EXP/Capacity boost items and more gil.*
 
 # System Requirements
