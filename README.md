@@ -67,11 +67,7 @@ Can move the shortcut anywhere now. :fireworks:
 
 
 ### Trade your Adventurer Coupon to
-
-_Ailevia_ **(Southern San d'Oria I-9)**
-_Reet_ **(Bastok Markets G-7)**
-_Jack of Spades_ **(Windurst Woods H-10)**
-
+_Ailevia_ **(Southern San d'Oria I-9)**, _Reet_ **(Bastok Markets G-7)** _or Jack of Spades_ **(Windurst Woods H-10)**
 ### For EXP/Capacity boost items and more gil.
 
 # System Requirements
