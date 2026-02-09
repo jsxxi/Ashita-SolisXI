@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -23,9 +23,9 @@
 * This file is created using the information from the d3d8.h header file of the Direct3D 8 SDK.
 --]]
 
-require 'win32types';
+require('win32types');
 
-local ffi   = require 'ffi';
+local ffi   = require('ffi');
 local C     = ffi.C;
 
 ffi.cdef[[
@@ -208,7 +208,7 @@ IDirect3DDevice8 = ffi.metatype('IDirect3DDevice8', {
 
             return res, swap;
         end,
-        Reset = function (self, pPresentationParameters) ---@diagnostic disable-line: unused-local
+        Reset = function (self, pPresentationParameters)
             -- Note: Reset calls are not valid for FFXI.
             error('Not implemented.');
         end,
@@ -500,7 +500,7 @@ IDirect3DDevice8 = ffi.metatype('IDirect3DDevice8', {
 
             return res, res == C.S_OK and passes[0] or nil;
         end,
-        GetInfo = function (self, DevInfoID, pDevInfoStruct, DevInfoStructSize) ---@diagnostic disable-line: unused-local
+        GetInfo = function (self, DevInfoID, pDevInfoStruct, DevInfoStructSize)
             error('Not implemented.');
         end,
         SetPaletteEntries = function (self, PaletteNumber, pEntries)

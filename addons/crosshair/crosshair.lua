@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2024 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,15 +21,14 @@
 
 addon.name      = 'crosshair';
 addon.author    = 'atom0s';
-addon.version   = '1.2';
+addon.version   = '1.0';
 addon.desc      = 'Draws position helper lines to move Ashita\'s font and UI elements.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
-
-local chat  = require 'chat';
-local d3d8  = require 'd3d8';
-local imgui = require 'imgui';
+require('common');
+local chat = require('chat');
+local d3d8  = require('d3d8');
+local imgui = require('imgui');
 
 -- Addon variables..
 local crosshair = T{
@@ -66,7 +65,7 @@ ashita.events.register('d3d_present', 'present_cb', function ()
     if (crosshair.enabled == false) then return; end
 
     local res, vp = d3d8.get_device():GetViewport();
-    if (res ~= 0 or vp == nil) then
+    if (res ~= 0) then
         return;
     end
 

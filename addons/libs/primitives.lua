@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -19,15 +19,20 @@
 * along with Ashita.  If not, see <https://www.gnu.org/licenses/>.
 --]]
 
-require 'common';
+local ffi = require('ffi');
+require('common');
 
-local ffi = require 'ffi';
-
+-- Set the random seed..
 math.randomseed(os.time());
 
----@class primlib
+--[[
+* Primitive Library Internal Table
+--]]
 local primlib = T{
+    -- Primitive Object Caching
     cache = T{ },
+
+    -- Default Primitive Object Settings
     defaults = T{
         texture         = nil,
         texture_offset_x= 0.0,
@@ -48,6 +53,8 @@ local primlib = T{
         height          = 0.0,
         color           = 0xFFFFFFFF,
     },
+
+    -- Primitive Object Method Forwards
     methods = T{
         ['alias']               = { 'GetAlias', 'SetAlias' },
         ['texture']             = { nil, 'SetTextureFromFile' },
@@ -71,7 +78,7 @@ local primlib = T{
         ['border_sizes'] = {
             function (self)
                 local sizes = self:GetBorderSizes();
-                return T{ sizes.left, sizes.top, sizes.right, sizes.bottom };
+                return sizes.left, sizes.top, sizes.right, sizes.bottom;
             end,
             function (self, v)
                 if (type(v) == 'userdata' and RECT.__type.is(v)) then
@@ -79,16 +86,18 @@ local primlib = T{
                 else
                     local r     = RECT.new();
                     local vals  = tostring(v):split(',');
-                    r.left      = tonumber(vals[1] or 0); ---@diagnostic disable-line: assign-type-mismatch
-                    r.top       = tonumber(vals[2] or 0); ---@diagnostic disable-line: assign-type-mismatch
-                    r.right     = tonumber(vals[3] or 0); ---@diagnostic disable-line: assign-type-mismatch
-                    r.bottom    = tonumber(vals[4] or 0); ---@diagnostic disable-line: assign-type-mismatch
+                    r.left      = tonumber(vals[1] or 0);
+                    r.top       = tonumber(vals[2] or 0);
+                    r.right     = tonumber(vals[3] or 0);
+                    r.bottom    = tonumber(vals[4] or 0);
 
                     self:SetBorderSizes(r);
                 end
             end,
         },
     },
+
+    -- Primitive Object Mouse Events
     mouse_events = T{
         [0x200] = 'mouse_move',
         [0x201] = 'left_click_down',
@@ -201,12 +210,13 @@ do
     end);
 end
 
----Creates and returns a new primitive object.
----@param settings? table The settings overrides to apply to the primitive after creating it.
----@return LuaPrimitiveObject
+--[[
+* Creates and returns a new primitive object.
+*
+* @param {table} settings - The [optional] settings overrides to apply to the primitive after creating it.
+* @return {table} The primitive object wrapped in a custom table.
+--]]
 function primlib.new(settings)
-    settings = settings or {};
-
     -- Create a unique alias for the primitive object..
     local n = ('%s_********_********'):fmt(addon.name):gsub('[\\*]', function ()
         return ('%x'):fmt(math.random(0x00, 0x0F));
@@ -237,9 +247,12 @@ function primlib.new(settings)
     return pobj;
 end
 
----Wraps an existing primitive object.
----@param o IPrimitiveObject The primitive object to wrap.
----@return LuaPrimitiveObject
+--[[
+* Wraps an existing primitive object.
+*
+* @param {userdata} o - The primitive object to wrap.
+* @return {table} The primitive object wrapped in a custom table.
+--]]
 function primlib.wrap(o)
     -- Create a wrapper for this primitive object..
     local p     = T{ };
@@ -257,14 +270,17 @@ function primlib.wrap(o)
     return pobj;
 end
 
----Return a table of primitive settings from a loaded configuration block.
----
----This is a helper that will try and load settings from the given configuration block.<br>
----If a setting value exists, it will be used, otherwise the defaults table data is used instead.
----@param alias string The configuration alias.
----@param key string The configuration key to find the values within.
----@return table
----@nodiscard
+--[[
+* Return a table of primitive settings from a loaded configuration block.
+*
+* @param {string} alias - The configuration alias.
+* @param {string} key - The configuration key to find the values within.
+* @return {table} Table of primitive object settings.
+*
+* @note
+*   This is a helper that will try and load settings from the given configuration block.
+*   If a setting value exists, it will be used, otherwise the defaults table data is used instead.
+--]]
 function primlib.load_settings(alias, key)
     -- Prepare the configurations..
     local settings = T{ };
@@ -292,10 +308,10 @@ function primlib.load_settings(alias, key)
                         ret = RECT.new();
 
                         local v     = vals:split(',');
-                        ret.left    = tonumber(v[1] or def.left); ---@diagnostic disable-line: assign-type-mismatch
-                        ret.top     = tonumber(v[2] or def.top); ---@diagnostic disable-line: assign-type-mismatch
-                        ret.right   = tonumber(v[3] or def.right); ---@diagnostic disable-line: assign-type-mismatch
-                        ret.bottom  = tonumber(v[4] or def.bottom); ---@diagnostic disable-line: assign-type-mismatch
+                        ret.left    = tonumber(v[1] or def.left);
+                        ret.top     = tonumber(v[2] or def.top);
+                        ret.right   = tonumber(v[3] or def.right);
+                        ret.bottom  = tonumber(v[4] or def.bottom);
                     else
                         ret = def;
                     end
@@ -318,8 +334,11 @@ function primlib.load_settings(alias, key)
     return settings;
 end
 
----Destroys the primitive object.
----@param self LuaPrimitiveObject
+--[[
+* Destroys the primitive object.
+*
+* @param {table} self - The primitive object wrapper to destroy.
+--]]
 function primlib.primobj_mt.destroy(self)
     -- Remove the object from the cache..
     local k, _ = primlib.cache:find_if(function (v)
@@ -333,9 +352,12 @@ function primlib.primobj_mt.destroy(self)
     AshitaCore:GetPrimitiveManager():Delete(self.alias);
 end
 
----Applies the given settings to the primitive object.
----@param self LuaPrimitiveObject
----@param settings table The settings to apply to the primitive object.
+--[[
+* Applies the given settings to the primitive object.
+*
+* @param {table} self - The primitive object wrapper.
+* @param {table} settings - The settings to apply to the primitive object.
+--]]
 function primlib.primobj_mt.apply(self, settings)
     -- Prepare the primitive settings using the defaults and merging in any overrides..
     local s = primlib.defaults:copy(true):merge(settings or {}, true);
@@ -346,12 +368,14 @@ function primlib.primobj_mt.apply(self, settings)
     end);
 end
 
----Finds and returns the index of a registered event for the given primitive.
----@param self LuaPrimitiveObject
----@param eventName string The name of the event.
----@param eventAlias string The alias of the event.
----@return number|nil
----@nodiscard
+--[[
+* Finds and returns the index of a registered event for the given primitive.
+*
+* @param {table} self - The primitive object wrapper.
+* @param {string} eventName - The name of the event.
+* @param {string} eventAlias - The alias of the event.
+* @return {number|nil} The index if found, nil otherwise.
+--]]
 function primlib.primobj_mt.find_event(self, eventName, eventAlias)
     -- Obtain the events table for the given event name..
     local events = self.events[eventName:lower()];
@@ -367,11 +391,14 @@ function primlib.primobj_mt.find_event(self, eventName, eventAlias)
     return k;
 end
 
----Registers an event callback for the given event.
----@param self LuaPrimitiveObject
----@param eventName string The name of the event.
----@param eventAlias string The alias of the event.
----@param callback function The function to invoke when the event is fired.
+--[[
+* Registers an event callback for the given event.
+*
+* @param {table} self - The primitive object wrapper.
+* @param {string} eventName - The name of the event.
+* @param {string} eventAlias - The alias of the event.
+* @param {function} callback - The function to invoke when the event is fired.
+--]]
 function primlib.primobj_mt.register(self, eventName, eventAlias, callback)
     assert(type(eventName) == 'string', 'Invalid event name; expected a string.');
     assert(type(eventAlias) == 'string', 'Invalid event alias; expected a string.');
@@ -400,10 +427,13 @@ function primlib.primobj_mt.register(self, eventName, eventAlias, callback)
     end
 end
 
----Unregisters an event callback for the given event.
----@param self LuaPrimitiveObject
----@param eventName string The name of the event.
----@param eventAlias string The alias of the event.
+--[[
+* Unregisters an event callback for the given event.
+*
+* @param {table} self - The primitive object wrapper.
+* @param {string} eventName - The name of the event.
+* @param {string} eventAlias - The alias of the event.
+--]]
 function primlib.primobj_mt.unregister(self, eventName, eventAlias)
     assert(type(eventName) == 'string', 'Invalid event name; expected a string.');
     assert(type(eventAlias) == 'string', 'Invalid event alias; expected a string.');

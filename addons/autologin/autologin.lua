@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2024 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,7 +21,7 @@
 
 addon.name      = 'autologin';
 addon.author    = 'atom0s';
-addon.version   = '1.2';
+addon.version   = '1.0';
 addon.desc      = 'Automatically logs into a desired character slot.';
 addon.link      = 'https://ashitaxi.com/';
 
@@ -99,11 +99,13 @@ local autologin = T{
     },
 };
 
----Returns a casted menu type from a base pointer.
----@param ptr number
----@param t string
----@return any|nil
----@nodiscard
+--[[
+* Returns a casted menu type from a base pointer.
+*
+* @param {number} ptr   - The base pointer of the menu object.
+* @param {string} t     - The menu object type.
+* @return {userdata|nil} The casted pointer on success, nil otherwise.
+--]]
 local function get_menu_obj(ptr, t)
     if (ptr == 0) then return nil; end
     ptr = ashita.memory.read_uint32(ptr);
@@ -111,8 +113,11 @@ local function get_menu_obj(ptr, t)
     return ffi.cast(t:append('*'), ashita.memory.read_uint32(ptr));
 end
 
----Returns the name of the current opened and focused menu.
----@return string|nil
+--[[
+* Returns the name of the current opened and focused menu.
+*
+* @return {string|nil} The name of the menu if open, nil otherwise.
+--]]
 local function get_menu_name()
     local ptr = AshitaCore:GetPointerManager():Get('menu');
     if (ptr == 0) then return nil; end
@@ -125,8 +130,11 @@ local function get_menu_name()
     return ashita.memory.read_string(ptr + 0x46, 16);
 end
 
----Prints the addon help information.
----@param is_err boolean
+--[[
+* Prints the addon help information.
+*
+* @param {boolean} is_err - Flag if this function was invoked due to an error.
+--]]
 local function print_help(is_err)
     -- Print the help header..
     if (is_err) then
@@ -146,7 +154,9 @@ local function print_help(is_err)
     end);
 end
 
---- Automates the login process.
+--[[
+* Automates the login process.
+--]]
 local function do_login()
     local function step()
         local menu_names = T{
@@ -223,11 +233,11 @@ end
 * desc : Event called when the addon is being loaded.
 --]]
 ashita.events.register('load', 'load_cb', function (e)
-    autologin.ptrs.license  = ashita.memory.find(0, 0, '895E1C895E14896E1889??????????EB??89??????????68', 0x0B, 0);
-    autologin.ptrs.lobby    = ashita.memory.find(0, 0, '89412C8B15????????897C2410894230A1', 0x5, 0);
-    autologin.ptrs.select   = ashita.memory.find(0, 0, '89412C8B15????????897C2410894230A1', 0x11, 0);
-    autologin.ptrs.selectidx= ashita.memory.find(0, 0, 'A1????????8B5108406689424C8B4908668B414C50E8', 0x01, 0);
-    autologin.ptrs.yesno    = ashita.memory.find(0, 0, '895E1C895E14896E1889??????????EB??89??????????68', 0x47, 0);
+    autologin.ptrs.license  = ashita.memory.find('FFXiMain.dll', 0, '895E1C895E14896E1889??????????EB??89??????????68', 0x0B, 0);
+    autologin.ptrs.lobby    = ashita.memory.find('FFXiMain.dll', 0, '89412C8B15????????897C2410894230A1', 0x5, 0);
+    autologin.ptrs.select   = ashita.memory.find('FFXiMain.dll', 0, '89412C8B15????????897C2410894230A1', 0x11, 0);
+    autologin.ptrs.selectidx= ashita.memory.find('FFXiMain.dll', 0, 'A1????????8B5108406689424C8B4908668B414C50E8', 0x01, 0);
+    autologin.ptrs.yesno    = ashita.memory.find('FFXiMain.dll', 0, '895E1C895E14896E1889??????????EB??89??????????68', 0x47, 0);
 
     if (not autologin.ptrs:all(function (v) return v ~= nil; end)) then
         error(chat.header(addon.name):append(chat.error('Error: Failed to locate required menu object pointer(s).')));

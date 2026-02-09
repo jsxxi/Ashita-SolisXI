@@ -40,19 +40,19 @@ ffi.cdef[[
 local macrolib = T{
     ptrs = T{
         -- Macro Objects
-        macro       = ashita.memory.find(0, 0, '8B0D????????E8????????8B4424105EC38B15????????68', 2, 0),   -- g_pFsMacro
-        controller  = ashita.memory.find(0, 0, 'A3????????EB??891D????????6A50E8', 1, 0),                   -- g_pFsMacroController
+        macro       = ashita.memory.find('FFXiMain.dll', 0, '8B0D????????E8????????8B4424105EC38B15????????68', 2, 0),  -- g_pFsMacro
+        controller  = ashita.memory.find('FFXiMain.dll', 0, 'A3????????EB??891D????????6A50E8', 1, 0),                  -- g_pFsMacroController
 
         -- Macro Functions
-        can_use     = ashita.memory.find(0, 0, '66A1????????5633F66685C074??0FBFC08B3485????????8B0D', 0, 0),                                   -- FsMacroController::canUseMacro
-        clear       = ashita.memory.find(0, 0, '8B44240485C07C??83F8147D??8D1440C1E2052BD08D4C9104E8????????B001', 0, 0),                       -- FsMacroContainer::clearMacro
-        get_name    = ashita.memory.find(0, 0, '8B44240485C07C??83F8147D??8D1440C1E2052BD08D4C9104E8????????85C0', 0, 0),                       -- FsMacroContainer::getName
-        get_line    = ashita.memory.find(0, 0, '8B44240485C07C??83F8147D??8B542408528D1440C1E2052BD08D4C9104E8????????C2080033C0C20800', 0, 0), -- FsMacroContainer::getLine
-        run         = ashita.memory.find(0, 0, '8A44240453563C018BF175??8A5C24108B4E040FBEC350E8', 0, 0),                                       -- FsMacroContainer::runMacro
-        set_book    = ashita.memory.find(0, 0, '8B442404568BF18B8EC01D00003BC875??8BC15EC20400', 0, 0),                                         -- FsMacroContainer::setBook
-        set_page    = ashita.memory.find(0, 0, '568BF1578B7C240C8B86C01D00008D04', 0, 0),                                                       -- FsMacroContainer::setPage
-        set         = ashita.memory.find(0, 0, '8B442408538B5C24085657508BCBE8????????85C07C??8B', 0, 0),                                       -- FsMacroContainer::setMacro
-        stop        = ashita.memory.find(0, 0, 'C781????????FFFFFFFFC3', 0, 0),                                                                 -- FsMacroContainer::stopMacro
+        can_use     = ashita.memory.find('FFXiMain.dll', 0, '66A1????????5633F66685C074??0FBFC08B3485????????8B0D', 0, 0),                                      -- FsMacroController::canUseMacro
+        clear       = ashita.memory.find('FFXiMain.dll', 0, '8B44240485C07C??83F8147D??8D1440C1E2052BD08D4C9104E8????????B001', 0, 0),                          -- FsMacroContainer::clearMacro
+        get_name    = ashita.memory.find('FFXiMain.dll', 0, '8B44240485C07C??83F8147D??8D1440C1E2052BD08D4C9104E8????????85C0', 0, 0),                          -- FsMacroContainer::getName
+        get_line    = ashita.memory.find('FFXiMain.dll', 0, '8B44240485C07C??83F8147D??8B542408528D1440C1E2052BD08D4C9104E8????????C2080033C0C20800', 0, 0),    -- FsMacroContainer::getLine
+        run         = ashita.memory.find('FFXiMain.dll', 0, '8A44240453563C018BF175??8A5C24108B4E040FBEC350E8', 0, 0),                                          -- FsMacroContainer::runMacro
+        set_book    = ashita.memory.find('FFXiMain.dll', 0, '8B442404568BF18B8EC01D00003BC875??8BC15EC20400', 0, 0),                                            -- FsMacroContainer::setBook
+        set_page    = ashita.memory.find('FFXiMain.dll', 0, '568BF1578B7C240C8B86C01D00008D04', 0, 0),                                                          -- FsMacroContainer::setPage
+        set         = ashita.memory.find('FFXiMain.dll', 0, '8B442408538B5C24085657508BCBE8????????85C07C??8B', 0, 0),                                          -- FsMacroContainer::setMacro
+        stop        = ashita.memory.find('FFXiMain.dll', 0, 'C781????????FFFFFFFFC3', 0, 0),                                                                    -- FsMacroContainer::stopMacro
     },
 };
 
@@ -61,27 +61,33 @@ if (not macrolib.ptrs:all(function (v) return v ~= nil and v ~= 0; end)) then
     return;
 end
 
----Returns the current g_pFsMacro object.
----@return number
----@nodiscard
+--[[
+* Returns the current g_pFsMacro object.
+*
+* @return {number} The current g_pFsMacro object.
+--]]
 macrolib.get_fsmacro = function ()
     local addr = ashita.memory.read_uint32(macrolib.ptrs.macro);
     if (addr == 0) then return 0; end
     return ashita.memory.read_uint32(addr);
 end
 
----Returns the current g_pFsMacroController object.
----@return number
----@nodiscard
+--[[
+* Returns the current g_pFsMacroController object.
+*
+* @return {number} The current g_pFsMacroController object.
+--]]
 macrolib.get_fscontroller = function ()
     local addr = ashita.memory.read_uint32(macrolib.ptrs.controller);
     if (addr == 0) then return 0; end
     return ashita.memory.read_uint32(addr);
 end
 
----Returns if a macro can currently be used.
----@return boolean
----@nodiscard
+--[[
+* Returns if a macro can currently be used.
+*
+* @return {boolean} True if a macro can run, false otherwise.
+--]]
 macrolib.can_use = function ()
     local obj = macrolib.get_fscontroller();
     if (obj == nil) then return false; end
@@ -89,9 +95,12 @@ macrolib.can_use = function ()
     return ffi.cast('FsMacroController_canUseMacro_f', macrolib.ptrs.can_use)(obj);
 end
 
----Clears a macro, removing its name and lines.
----@param idx number
----@return boolean
+--[[
+* Clears a macro, removing its name and lines.
+*
+* @param {number} idx - The index of the macro to clear.
+* @return {boolean} True if the macro is cleared, false otherwise.
+--]]
 macrolib.clear = function (idx)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return false; end
@@ -103,10 +112,12 @@ macrolib.clear = function (idx)
     return ffi.cast('FsMacroContainer_clearMacro_f', macrolib.ptrs.clear)(obj, idx);
 end
 
----Returns the name of a macro.
----@param idx number The index of the macro.
----@return string
----@nodiscard
+--[[
+* Returns the name of a macro.
+*
+* @param {number} idx - The index of the macro.
+* @return {string} The name of the macro.
+--]]
 macrolib.get_name = function (idx)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return ''; end
@@ -127,11 +138,13 @@ macrolib.get_name = function (idx)
     return str;
 end
 
----Returns the requested line of a macro.
----@param idx number The index of the macro.
----@param line number The index of the macro line.
----@return string
----@nodiscard
+--[[
+* Returns the requested line of a macro.
+*
+* @param {number} idx - The index of the macro.
+* @param {number} line - The index of the macro line.
+* @return {string} The macro line.
+--]]
 macrolib.get_line = function (idx, line)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return ''; end
@@ -152,9 +165,11 @@ macrolib.get_line = function (idx, line)
     return str;
 end
 
----Returns if a macro is currently running.
----@return boolean
----@nodiscard
+--[[
+* Returns if a macro is currently running.
+*
+* @return {boolean} True if running, false otherwise.
+--]]
 macrolib.is_running = function ()
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return false; end
@@ -162,9 +177,12 @@ macrolib.is_running = function ()
     return ashita.memory.read_uint32(obj + ashita.memory.read_uint32(macrolib.ptrs.stop + 2)) ~= 0xFFFFFFFF;
 end
 
----Runs a macro.
----@param mod number The modifier key state of the macro. (1 = Control, 2 = Alt)
----@param idx number The index of the macro.
+--[[
+* Runs a macro.
+*
+* @param {number} mod - The modifier key state of the macro. (1 = Control, 2 = Alt)
+* @param {number} idx - The index of the macro.
+--]]
 macrolib.run = function (mod, idx)
     local obj = macrolib.get_fscontroller();
     if (obj == nil) then return; end
@@ -176,9 +194,12 @@ macrolib.run = function (mod, idx)
     ffi.cast('FsMacroContainer_runMacro_f', macrolib.ptrs.run)(obj, mod, idx);
 end
 
----Sets the current macro book.
----@param idx number The index of the macro book to set.
----@return number
+--[[
+* Sets the current macro book.
+*
+* @param {number} idx - The index of the macro book to set.
+* @return {number} Unused return value.
+--]]
 macrolib.set_book = function (idx)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return 0; end
@@ -190,9 +211,12 @@ macrolib.set_book = function (idx)
     return ffi.cast('FsMacroContainer_setBook_f', macrolib.ptrs.set_book)(obj, idx);
 end
 
----Sets the current macro page.
----@param idx number The index of the macro page to set.
----@return number
+--[[
+* Sets the current macro page.
+*
+* @param {number} idx - The index of the macro page to set.
+* @return {number} Unused return value.
+--]]
 macrolib.set_page = function (idx)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return 0; end
@@ -204,10 +228,13 @@ macrolib.set_page = function (idx)
     return ffi.cast('FsMacroContainer_setPage_f', macrolib.ptrs.set_page)(obj, 2 * (idx + 1) - 2);
 end
 
----Sets a macro.
----@param idx number The index of the macro to set.
----@param title string The new title of the macro.
----@param lines table<number, string> The new lines of the macro.
+--[[
+* Sets a macro.
+*
+* @param {number} idx - The index of the macro to set.
+* @param {string} title - The new title of the macro.
+* @param {table} lines - The new lines of the macro.
+--]]
 macrolib.set = function (idx, title, lines)
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return; end
@@ -243,7 +270,9 @@ macrolib.set = function (idx, title, lines)
     ffi.cast('FsMacroContainer_setMacro_f', macrolib.ptrs.set)(obj + 380 * idx + 4, title, str);
 end
 
----Stops the current running macro.
+--[[
+* Stops the current running macro.
+--]]
 macrolib.stop = function ()
     local obj = macrolib.get_fsmacro();
     if (obj == nil) then return; end

@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2022 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,11 +21,11 @@
 
 addon.name      = 'nokb';
 addon.author    = 'atom0s';
-addon.version   = '1.4';
+addon.version   = '1.1';
 addon.desc      = 'Disables knockback effects applied to the local player.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
+require('common');
 
 --[[
 * event: packet_in
@@ -41,17 +41,17 @@ ashita.events.register('packet_in', 'packet_in_cb', function (e)
             local b = 150;
 
             -- Loop the targets affected by the action..
-            for _ = 0, n - 1 do
+            for x = 0, n - 1 do
                 -- Prevent the knock back from happening..
                 ashita.bits.pack_be(e.data_modified_raw, 0, b + 60, 3);
 
                 -- Skip over additional effect information if present..
-                if (bit.band(ashita.bits.unpack_be(e.data_modified_raw, b + 121, 1), 0x01) == 0x01) then
+                if (bit.band(ashita.bits.unpack_be(e.data_modified_raw, b + 121, 1), 0x01)) then
                     b = b + 37;
                 end
 
                 -- Skip over spike effect information if present..
-                if (bit.band(ashita.bits.unpack_be(e.data_modified_raw, b + 122, 1), 0x01) == 0x01) then
+                if (bit.band(ashita.bits.unpack_be(e.data_modified_raw, b + 122, 1), 0x01)) then
                     b = b + 34;
                 end
 

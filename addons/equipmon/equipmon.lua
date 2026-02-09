@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,20 +21,19 @@
 
 addon.name      = 'equipmon';
 addon.author    = 'atom0s';
-addon.version   = '1.5';
+addon.version   = '1.2';
 addon.desc      = 'Displays the players equipment onscreen at all times.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
-
-local chat      = require 'chat';
-local d3d       = require 'd3d8';
-local ffi       = require 'ffi';
-local fonts     = require 'fonts';
-local imgui     = require 'imgui';
-local prims     = require 'primitives';
-local scaling   = require 'scaling';
-local settings  = require 'settings';
+require('common');
+local chat      = require('chat');
+local d3d       = require('d3d8');
+local ffi       = require('ffi');
+local fonts     = require('fonts');
+local imgui     = require('imgui');
+local prims     = require('primitives');
+local scaling   = require('scaling');
+local settings  = require('settings');
 
 local C = ffi.C;
 local d3d8dev = d3d.get_device();
@@ -237,7 +236,7 @@ end
 --]]
 local function update_equipment_textures()
     eqmon.slots:each(function (v)
-        local id, _ = get_equipped_item(v.slot);
+        local id, count = get_equipped_item(v.slot);
         if (id == nil) then
             v.itemid = 0;
             v.texture = nil;
@@ -263,7 +262,7 @@ local function render_editor()
     if (imgui.Begin('EquipMon', eqmon.editor.is_open, ImGuiWindowFlags_NoResize)) then
         imgui.BeginGroup();
             imgui.TextColored({ 1.0, 0.65, 0.26, 1.0 }, 'Main Settings');
-            imgui.BeginChild('settings_main', { 0, 135, }, ImGuiChildFlags_Borders);
+            imgui.BeginChild('settings_main', { 0, 135, }, true);
 
                 if (imgui.Checkbox('Visible', eqmon.settings.visible)) then
                     settings.save();
@@ -295,7 +294,7 @@ local function render_editor()
 
         imgui.BeginGroup();
             imgui.TextColored({ 1.0, 0.65, 0.26, 1.0 }, 'Slot Settings');
-            imgui.BeginChild('settings_slots', { 0, 110, }, ImGuiChildFlags_Borders);
+            imgui.BeginChild('settings_slots', { 0, 110, }, true);
 
                 if (imgui.InputInt('Theme', eqmon.settings.slots.theme)) then
                     eqmon.bg = load_asset_texture(eqmon.settings.slots.theme[1]);
@@ -313,7 +312,7 @@ local function render_editor()
 
         imgui.BeginGroup();
             imgui.TextColored({ 1.0, 0.65, 0.26, 1.0 }, 'Background Settings');
-            imgui.BeginChild('settings_bg', { 0, 65, }, ImGuiChildFlags_Borders);
+            imgui.BeginChild('settings_bg', { 0, 65, }, true);
 
                 -- Flips the R and B values of a color for translation between ImGui and D3D.
                 local function cflip(c)
@@ -347,7 +346,7 @@ local function render_editor()
 
         imgui.BeginGroup();
             imgui.TextColored({ 1.0, 0.65, 0.26, 1.0 }, 'Ammo Font Settings');
-            imgui.BeginChild('settings_ammo_font', { 0, 185, }, ImGuiChildFlags_Borders);
+            imgui.BeginChild('settings_ammo_font', { 0, 185, }, true);
 
                 local need_font_update = false;
 

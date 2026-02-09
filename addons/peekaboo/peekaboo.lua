@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,13 +21,12 @@
 
 addon.name      = 'peekaboo';
 addon.author    = 'atom0s';
-addon.version   = '1.1';
+addon.version   = '1.0';
 addon.desc      = 'Forces all entities the client obtains data for to be visible.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
-
-local ffi = require 'ffi';
+local ffi = require('ffi');
+require('common');
 
 --[[
 * event: packet_in

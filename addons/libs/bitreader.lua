@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2024 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -19,24 +19,22 @@
 * along with Ashita.  If not, see <https://www.gnu.org/licenses/>.
 --]]
 
-require 'common';
+require('common');
 
----@class BitReader
----@field data table The data table being read from.
----@field bit number The current bit position.
----@field pos number The current byte position.
 local breader = T{
     data    = nil,
     bit     = 0,
     pos     = 0,
 };
 
----Creates and returns a new bit reader instance.
----@param self BitReader
----@param o nil|table The default object, if provided.
----@param data nil|string|table The data to be used with this reader.
----@param pos nil|number The position within the data, if provided.
----@return BitReader
+--[[
+* Creates and returns a new bit reader instance.
+*
+* @param {table} o - The default object, if provided.
+* @param {table} data - The data to be used with this reader. (optional)
+* @param {number} pos - The position within the data, if provided. (optional)
+* @return {table} The bit reader instance.
+--]]
 function breader:new(o, data, pos)
     o = o or T{};
 
@@ -54,14 +52,17 @@ function breader:new(o, data, pos)
     return o;
 end
 
----Set the current reader data. (Resets the current position.)
----
----_The data passed to this function should either be a string containing hexadecimal
----values or a table of bytes. If the data is a string, it will be converted to a
----byte table automatically. (String usage is intended for use with literal strings
----such as packet data from the Ashita packet events.)_
----@param self BitReader
----@param data string|table The data to be used with the reader.
+--[[
+* Set the current reader data. (Resets the current position.)
+*
+* @param {string|table} data - The data to be used with the reader.
+* @note
+*
+*       The data passed to this function should either be a string containing hexadecimal
+*       values or a table of bytes. If the data is a string, it will be converted to a
+*       byte table automatically. (String usage is intended for use with literal strings
+*       such as packet data from the Ashita packet events.)
+--]]
 function breader:set_data(data)
     self.bit    = 0;
     self.data   = T{};
@@ -77,8 +78,6 @@ function breader:set_data(data)
             if (getmetatable(data) == nil) then
                 data = T(data);
             end
-
-            ---@cast data table
             self.data = data;
         end,
         [switch.default] = function ()
@@ -87,29 +86,37 @@ function breader:set_data(data)
     });
 end
 
----Sets the current reader bit position.
----
----_This method does not reset the byte position!_
----@param self BitReader
----@param pos number The bit position to set the reader to.
+--[[
+* Sets the current reader bit position.
+*
+* @param {number} pos - The bit position to set the reader to.
+* @note
+*
+*       This method does not reset the byte position!
+--]]
 function breader:set_bit_pos(pos)
     self.bit = pos;
 end
 
----Sets the current reader byte position.
----
----_This method resets the bit position to 0!_
----@param self BitReader
----@param pos number The byte position to set the reader to.
+--[[
+* Sets the current reader byte position.
+*
+* @param {number} pos - The byte position to set the reader to.
+* @note
+*
+*       This method resets the bit position to 0!
+--]]
 function breader:set_pos(pos)
     self.bit = 0;
     self.pos = pos;
 end
 
----Reads a packed value from the current data.
----@param self BitReader
----@param bits number The number of bits to read.
----@return number
+--[[
+* Reads a packed value from the current data.
+*
+* @param {number} bits - The number of bits to read.
+* @return {number} The read value.
+--]]
 function breader:read(bits)
     local ret = 0;
 

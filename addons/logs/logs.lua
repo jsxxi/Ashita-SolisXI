@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,11 +21,12 @@
 
 addon.name      = 'logs';
 addon.author    = 'atom0s';
-addon.version   = '1.2';
+addon.version   = '1.0';
 addon.desc      = 'Logs all text that goes through the chat log to a file.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
+require('common');
+local chat = require('chat');
 
 -- Logs Variables
 local logs = T{

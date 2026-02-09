@@ -1,0 +1,33 @@
+require('common');
+
+local settings = T{ };
+settings["presetLists"] = T{ };
+settings["presetLists"][1] = T{ };
+settings["presetLists"][2] = T{ };
+settings["presetLists"][3] = T{ };
+settings["presetLists"][4] = T{ };
+settings["presetLists"][5] = T{ };
+settings["presetOnTop"] = T{ };
+settings["preset"] = T{ };
+settings["selectedMaxTrusts"] = T{ };
+settings["handheldMode"] = T{ };
+settings["slowMode"] = T{ };
+settings["cols"] = 2;
+settings["rows"] = 7;
+settings["presetOnTop"][1] = false;
+settings["isVisible"] = false;
+settings["preset"][1] = false;
+settings["preset"][2] = false;
+settings["preset"][3] = false;
+settings["preset"][4] = false;
+settings["preset"][5] = false;
+settings["maxTrusts"] = 3;
+settings["selectedMaxTrusts"][1] = true;
+settings["selectedMaxTrusts"][2] = false;
+settings["selectedMaxTrusts"][3] = false;
+settings["handheldMode"][1] = false;
+settings["waitTime"] = 5.5999999999999996;
+settings["scale"] = 1;
+settings["slowMode"][1] = false;
+
+return settings;

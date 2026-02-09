@@ -1,5 +1,5 @@
 --[[
-* Addons - Copyright (c) 2025 Ashita Development Team
+* Addons - Copyright (c) 2021 Ashita Development Team
 * Contact: https://www.ashitaxi.com/
 * Contact: https://discord.gg/Ashita
 *
@@ -21,16 +21,15 @@
 
 addon.name      = 'tparty';
 addon.author    = 'atom0s';
-addon.version   = '1.2';
+addon.version   = '1.0';
 addon.desc      = 'Displays party member TP amounts and target health percent.';
 addon.link      = 'https://ashitaxi.com/';
 
-require 'common';
-
-local chat      = require 'chat';
-local fonts     = require 'fonts';
-local scaling   = require 'scaling';
-local settings  = require 'settings';
+require('common');
+local chat = require('chat');
+local fonts = require('fonts');
+local scaling = require('scaling');
+local settings = require('settings');
 
 -- Default Settings
 local default_settings = T{
@@ -81,7 +80,6 @@ local function update_settings(s)
     -- Apply the font settings..
     if (tparty.font_target ~= nil) then
         tparty.font_target:apply(tparty.settings.target.font);
-        tparty.font_target.font_height = scaling.scale_f(8);
     end
     tparty.font_party:each(function (v, _)
         if (v ~= nil) then
@@ -146,8 +144,6 @@ end
 --]]
 ashita.events.register('load', 'load_cb', function ()
     tparty.font_target = fonts.new(tparty.settings.target.font);
-    tparty.font_target.font_height = scaling.scale_f(8);
-
     for x = 1, 18 do
         tparty.font_party[x] = fonts.new(tparty.settings.party.font);
 

@@ -19,15 +19,43 @@
 #
 ##########################################################################
 
-/load thirdparty
 /load addons
-/load screenshot
+/load minimap
+/load nameplate
 
-/addon load distance
+/addon load find
+/addon load watchdog
+/addon load hideconsole
+/addon load gateway
 /addon load fps
+/addon load instantah
 /addon load move
-/addon load timestamp
-/addon load tparty
+/addon load casper
+/addon load skeletonkey
+/addon load freemem
+/addon load paranormal
+/addon load allmaps
+/addon load timers
+/addon load truesight
+/addon load filterless
+/addon load hideui
+/addon load xicamera
+/addon load nomad
+/addon load nomount
+/addon load drawdistance
+/addon load mapdot
+/addon load hideparty
+/addon load fancytrusts
+/addon load enternity
+/addon load checker
+/addon load equipmon
+/addon load targetlines
+/addon load customcolors
+/addon load chains
+/addon load aspect
+/addon load statustimers
+/addon load xiui
+/addon load gainz
 
 ##########################################################################
 #
@@ -37,21 +65,25 @@
 
 /bind insert /ashita
 /bind SYSRQ /screenshot hide
-/bind $^v /paste
+/bind ^v /paste
 /bind F11 /ambient
 /bind F12 /fps
-/bind ^F1 /ta <a10>
-/bind ^F2 /ta <a11>
-/bind ^F3 /ta <a12>
-/bind ^F4 /ta <a13>
-/bind ^F5 /ta <a14>
-/bind ^F6 /ta <a15>
-/bind !F1 /ta <a20>
-/bind !F2 /ta <a21>
-/bind !F3 /ta <a22>
-/bind !F4 /ta <a23>
-/bind !F5 /ta <a24>
-/bind !F6 /ta <a25>
+/bind ^F1 /input /ta <a10>
+/bind ^F2 /input /ta <a11>
+/bind ^F3 /input /ta <a12>
+/bind ^F4 /input /ta <a13>
+/bind ^F5 /input /ta <a14>
+/bind ^F6 /input /ta <a15>
+/bind !F1 /input /ta <a20>
+/bind !F2 /input /ta <a21>
+/bind !F3 /input /ta <a22>
+/bind !F4 /input /ta <a23>
+/bind !F5 /input /ta <a24>
+/bind !F6 /input /ta <a25>
+/bind ^PageUp /cam in
+/bind ^PageDown /cam de
+/bind +PageUp /cam bin
+/bind +PageDown /cam bde
 
 ##########################################################################
 #
@@ -63,7 +95,14 @@
 # see any commands inside of this file!
 #
 ##########################################################################
-/wait 3
+/wait 5
 ##########################################################################
 
-/ambient 255 255 255
+/drawdistance setw 100
+/fps 1
+/fps
+/cam hs 7
+/cam vs 28
+/cam d 9
+/cam b 24
+/sk
