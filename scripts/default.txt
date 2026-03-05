@@ -26,7 +26,6 @@
 /addon load find
 /addon load watchdog
 /addon load hideconsole
-/addon load gateway
 /addon load fps
 /addon load instantah
 /addon load move
@@ -105,4 +104,3 @@
 /cam vs 28
 /cam d 9
 /cam b 24
-/sk
